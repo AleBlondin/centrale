@@ -1,10 +1,10 @@
-""" Defines the User repository """
+""" Defines the Movie repository """
 
 from models import Movie
 
 
-class UserRepository:
-    """ The repository for the user model """
+class MovieRepository:
+    """ The repository for the movie model """
 
     @staticmethod
     def get(name):
@@ -16,12 +16,13 @@ class UserRepository:
         movie = self.get(name)
 
         movie.date = date
+        movie.description=description
 
         return movie.save()
-# A reprendre à partir de là
-    @staticmethod
-    def create(last_name, first_name, age):
-        """ Create a new user """
-        user = User(last_name=last_name, first_name=first_name, age=age)
 
-        return user.save()
+    @staticmethod
+    def create(self, name, description, date):
+        """ Create a new film """
+        movie = movie(name=name, description=description, date=date)
+
+        return movie.save()
