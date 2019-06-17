@@ -34,7 +34,7 @@ class MovieResource(Resource):
 
     @staticmethod
     @parse_params(
-        Argument("date", location="json", required=True, help="The date the movie was realeased."), , Argument("description", location="json", required=True, help="What the movie is about"))
+        Argument("date", location="json", required=True, help="The date the movie was realeased."), Argument("description", location="json", required=True, help="What the movie is about"))
     @swag_from("../swagger/movie/PUT.yml")
     def put(name, description, date):
         """ Update a movie based on the sent information """
