@@ -1,22 +1,30 @@
-Return an user key information based on his name
+Return a movie key information based on its name
 ---
 tags:
-  - user
+  - movie
 parameters:
-  - name: last_name
+  - name: name
     in: path
     type: string
-    description: the last name of the user
-  - name: first_name
+    description: the title of the film
+  - name: description
     in: path
     type: string
-    description: the last name of the user
+    description: a description of the movie
+   - name: date
+    in: body
+    schema:
+      type: object
+      properties:
+        age:
+          type: integer
+          description: The date the movie was released
 responses:
   200:
-    description: The user's information were successfully retrieved
+    description: The movie's information were successfully retrieved
     schema:
       example:
-        user:
-          last_name: Doe
-          first_name: John
-          age: 30
+        movie:
+          name: Taxi
+          description: a car chase
+          age: 11/08/2006

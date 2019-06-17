@@ -1,0 +1,30 @@
+Update a movie based on the sent information
+---
+tags:
+  - movie
+parameters:
+  - name: name
+    in: path
+    type: string
+    description: the title of the film
+  - name: description
+    in: path
+    type: string
+    description: a description of the movie
+  - name: date
+    in: body
+    schema:
+      type: object
+      properties:
+        age:
+          type: integer
+          description: The date the movie was released
+responses:
+  200:
+    description: The movie's information were successfully created
+    schema:
+      example:
+        movie:
+          name: Taxi
+          description: a car chase
+          age: 11/08/2006
