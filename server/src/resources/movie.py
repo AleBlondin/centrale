@@ -41,3 +41,14 @@ class MovieResource(Resource):
         repository = MovieRepository()
         movie = repository.update(name=name, description=description, date=date)
         return jsonify({"movie": movie.json})
+
+class MoviesResource(Resource) :
+    "Made to touch all movies"
+
+    @staticmethod
+    @swag_from("../swagger/movies/GET.yml")
+    def get() :
+        """Return a json with all movies"""
+        movies = MovieRepository.getAll()
+        
+        return [movie.json for movie in movies]

@@ -26,3 +26,8 @@ class MovieRepository:
         movie = Movie(name=name, description=description, date=date)
 
         return movie.save()
+    
+    @staticmethod
+    def getAll() :
+        """Send all the movies"""
+        return Movie.query.all()
