@@ -1,0 +1,15 @@
+Return a dictionary with all the movies
+---
+tags:
+  - movie
+
+
+responses:
+  200:
+    description: All the movies
+    schema:
+      example:
+        movie :
+            nombre de films : 2
+            liste de films : Titanic, Mamma Mia!
+
