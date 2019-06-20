@@ -4,7 +4,7 @@ from models import User
 
 
 class UserRepository:
-    """ The repository for the user model """
+    """ The repository for the movie model """
 
     @staticmethod
     def get(last_name, first_name):

@@ -1,0 +1,69 @@
+.App {
+  text-align: center;
+}
+
+.logo {
+  pointer-events: none;
+  width:20px;
+  height:20px;
+}
+
+.App-header {
+  background-color: #282c34;
+  height: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: white;
+}
+
+.title {
+    color: #36C5D3;
+    font-family: Impact;
+
+}
+
+.genres2 {
+    display : flex ;
+    width : 500px;
+    height : 30px;
+    background-color : black;
+    align-items : center;
+    justify-content : space-around ;
+    border: 3px;
+
+    }
+
+
+.beau {
+
+  justify-content : center ;
+  display: flex;
+  flex-direction : row;
+  }
+.Genre {
+  background-color: black;
+  height: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: #C0C9D4;
+  font-family: Impact;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

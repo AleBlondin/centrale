@@ -1,0 +1,27 @@
+.Rubrics{
+  background-color: white;
+  color: black;
+  display : flex;
+  flex-direction : column;
+  justify-content:flex-start;
+}
+
+.Pictures{
+    background: black;
+    color : white;
+    display : flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+    align-self:center;
+}
+
+
+.movie-title {
+    display:flex;
+    flex-direction: column;
+    align-content : center;
+    text-decoration: none;
+}
+.list {
+    color : pink}

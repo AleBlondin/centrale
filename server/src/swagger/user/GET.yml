@@ -17,6 +17,6 @@ responses:
     schema:
       example:
         user:
-          last_name: Doe
+          last_name: paul
           first_name: John
           age: 30
