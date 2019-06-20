@@ -1,0 +1,23 @@
+Return a movie key information based on his name
+---
+tags:
+  - movie
+
+parameters:
+  - name: title
+    in: path
+    type: string
+    description: the title of the movie
+  - name: director
+    in: path
+    type: string
+    description: the director of the movie
+responses:
+  200:
+    description: The movie's information were successfully retrieved
+    schema:
+      example:
+        user:
+          title: Titanic
+          director: James Cameron
+
