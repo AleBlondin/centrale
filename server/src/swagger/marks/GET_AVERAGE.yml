@@ -1,0 +1,24 @@
+Return the average mark of a movie
+---
+tags:
+  - notation
+
+parameters:
+  - name: title
+    in: path
+    type: string
+    description: the title of the movie
+  - name: director
+    in: path
+    type: string
+    description: the director of the movie
+responses:
+  200:
+    description: The movie's average mark was successfully retrieved
+    schema:
+      example:
+        movie :
+            title: Titanic
+            director: James Cameron
+        average_mark : 3.8
+

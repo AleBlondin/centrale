@@ -1,0 +1,35 @@
+Return the mark of the movie given by the user
+---
+tags:
+  - notation
+
+parameters:
+  - name: last_name
+    in: path
+    type: string
+    description: the last_name of the user
+  - name: first_name
+    in: path
+    type: string
+    description: the first_name of the user
+  - name: title
+    in: path
+    type: string
+    description: the title of the movie
+  - name: director
+    in: path
+    type: string
+    description: the director of the movie
+responses:
+  200:
+    description: The movie's mark was successfully retrieved
+    schema:
+      example:
+        user:
+            last_name : 'Doe'
+            first_name : 'John'
+        movie :
+            title: Titanic
+            director: James Cameron
+        mark : 4
+

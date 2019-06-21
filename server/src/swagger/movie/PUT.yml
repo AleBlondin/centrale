@@ -1,0 +1,39 @@
+Update a movie based on the sent information
+---
+tags:
+  - movie
+parameters:
+  - name: title
+    in: path
+    type: string
+    description: the title of the movie
+  - name: director
+    in: path
+    type: string
+    description: the director of the movie
+  - name: body
+    in: body
+    schema:
+      type: object
+      properties:
+        date:
+          type: integer
+          description: The date of movie
+        original_language :
+           type: string
+           description : the original_language of the movie
+        type:
+           type: integer
+           description : The type of movie
+responses:
+  200:
+    description: The user was successfully created
+    schema:
+      example:
+        movie:
+          title: Titanic
+          director: James Cameron
+          original_language: English
+          date : 1997
+          type : romantic
+

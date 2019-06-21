@@ -1,0 +1,42 @@
+Create a notation based on the sent information
+---
+tags:
+  - notation
+
+parameters:
+  - name: last_name
+    in: path
+    type: string
+    description: the last name of the user
+  - name: first_name
+    in: path
+    type: string
+    description: the first name of the user
+  - name: title
+    in: path
+    type: string
+    description: the title of the movie
+  - name: director
+    in: path
+    type: string
+    description: the director of the movie
+  - name: body
+    in: body
+    schema:
+      type: object
+      properties:
+        mark:
+          type: integer
+          description: The mark given by the user to the movie
+responses:
+  200:
+    description: The notation was successfully created
+    schema:
+      example:
+        user:
+          last_name: Doe
+          first_name: John
+        movie :
+          title: Titanic
+          director : James Cameron
+        mark : 4
