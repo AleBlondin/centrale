@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import PokemonDisplayer from "./components/PokemonDisplayer";
 import HomePage from "./components/HomePage";
+import MoviePage from "./components/MoviePage";
 
 function App() {
   return (
@@ -11,6 +12,9 @@ function App() {
           <ul>
             <li>
               <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/film">Page film</Link>
             </li>
             <li>
               <Link to="/demo">API Fetch demo</Link>
@@ -25,6 +29,9 @@ function App() {
           </Route>
           <Route path="/">
             <HomePage />
+          </Route>
+          <Route path='/film'>
+            <MoviePage />
           </Route>
         </Switch>
       </div>
