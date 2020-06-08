@@ -1,0 +1,14 @@
+- Jad ZEROUAL: Je pensais que la partie backend fonctionnait mais en fait, en lançant le yarn deploy, j'ai eu cette erreur :
+Quelqu'un aurait des idées sur comment la résoudre ?
+
+- Simon maréchal: Y a-t-il un moyen de faire un auto increment pour les ID dans dynamodb.yml ?
+
+- Victor Collodel :  puisque que l'authentification n'est pas a réaliser nous-même, on utilise quoi pour faire des recommandations ciblées, favoris, notations, etc par utilisateur ?
+
+- Simon maréchal: En remplaçant l'adresse de l'api pokemon par celle qui est sensé nous renvoyer la liste des items de la bdd (https://ccd2qmojxl.execute-api.eu-west-1.amazonaws.com/dev/items), on a une erreur de Cross Origin Request Sharing (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin), mais on ne trouve pas de moyen de modifier le header dont parle la documentation. Une idée ?
+
+- Lucas sor: Bonjour, j'ai essayé de créer une page "template" pour une page de film. J'ai créé un fichier MoviePage.js et MoviePage.css dans src/components et ajouté un Link et un Router dans App.js. Lorsque je regarde le site, une ligne s'ajoute "Page film" (obtenue avec la balise <li> <Link to .....>. Lorsque je clique dessus, l'url change bien mais le site de s'actualise pas. Je ne vois pas la page que j'ai codé. Avez vous une idée d'où viens mon problème ?
+
+- David: Est-ce qu'on doit modifier la base de donnée dynamodb avec une requete POST pour déjà avoir un film à get ?
+
+- Maëlle renaud: Bonjour, j'essaie de faire une page MoviePage.js et pour passer le movieId depuis l'url jusqu'au composant, j'ai créé MoviePage comme une classe fille de React.Component plutot que comme une const. Mais je ne vois pas comment déclarer une fonction async pour permettre l'utilisation d'await pour le fetch dans ce cas. Comment résoudre ce pb ?
