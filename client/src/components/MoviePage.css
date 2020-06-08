@@ -3,17 +3,18 @@
   }
   
 .MoviePage-header {
-  background-color: grey;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: red ;
-}
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: red ;
+  }
 
 .MovieScore {
-background-color: black;
 color: yellow;
+font-family: verdana;
+font-size: 20px;
 }
