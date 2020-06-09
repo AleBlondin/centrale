@@ -7,17 +7,7 @@ Resources:
                 - AttributeName: type
                   AttributeType: S
                 - AttributeName: uuid
-                  AttributeType: S
-                - AttributeName: name
-                  AttributeType: S
-                - AttributeName: score
-                  AttributeType: M
-                - AttributeName: participation
-                  AttributeType: L
-                - AttributeName: category
-                  AttributeType: S
-
-                
+                  AttributeType: S                
             KeySchema:
                 - AttributeName: type
                   KeyType: HASH
