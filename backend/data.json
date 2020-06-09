@@ -1,0 +1,20 @@
+{
+    "cs-group-1-louis-marie-dynamodb": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "type": {"S":"movie"},
+                    "uuid": {"S":"Intouchable"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "type": {"S":"movie"},
+                    "uuid": {"S":"Star Wars"}
+                }
+            }
+        }
+    ]
+}
