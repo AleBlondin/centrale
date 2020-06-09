@@ -80,7 +80,7 @@ functions:
           cors:
             origin: http://localhost:3000
             allowCredentials: true
-    get_info_user:
+  get_info_user:
     handler: functions/get_info_user.handle
     events:
       - http:
