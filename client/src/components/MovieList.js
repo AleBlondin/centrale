@@ -14,10 +14,9 @@ const MovieList = () => {
     try {
       const response = await fetch("https://t7hapfpdr9.execute-api.eu-west-1.amazonaws.com/dev/movie/list");
       const responseJson = await response.json();
-      console.log(responseJson)
       setIsLoaded(true);
       setError(false);
-      setItems(responseJson.results);
+      setItems(responseJson);
     } catch (error) {
       setIsLoaded(true);
       setError(error);
@@ -40,7 +39,7 @@ const MovieList = () => {
       return (
         <ul>
           {items.map((item) => (
-            <li key={item.name}>{item.name}</li>
+            <li key={item.uuid}>{item.uuid}</li>
           ))}
         </ul>
         

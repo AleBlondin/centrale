@@ -53,6 +53,43 @@ functions:
           cors:
             origin: http://localhost:3000
             allowCredentials: true
+  list_movie:
+    handler: functions/list_movie.handle
+    events:
+      - http:
+          method: get
+          path: movie/list
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
+  list_user:
+    handler: functions/list_user.handle
+    events:
+      - http:
+          method: get
+          path: user/list
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
+  get_movie:
+    handler: functions/get_movie.handle
+    events:
+      - http:
+          method: get
+          path: movie/{id}
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
+  get_info_user:
+    handler: functions/get_info_user.handle
+    events:
+      - http:
+          method: get
+          path: user/{id}
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
+
 
 custom:
   stageVars: ${file(./stage.${self:provider.stage}.yml)}
