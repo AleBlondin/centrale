@@ -8,8 +8,7 @@ const MoviePage = () => {
           <p>
             Titre du film
           </p>
-          <p className="MovieScore"
-          >
+          <p className="MovieScore">
             Score du film /5
           </p>
         </header>

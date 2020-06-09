@@ -27,11 +27,11 @@ function App() {
           <Route path="/demo">
             <PokemonDisplayer />
           </Route>
-          <Route path="/">
-            <HomePage />
-          </Route>
           <Route path="/film">
             <MoviePage />
+          </Route>
+          <Route path="/">
+            <HomePage />
           </Route>
         </Switch>
       </div>
