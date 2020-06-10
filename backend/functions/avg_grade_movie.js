@@ -6,7 +6,7 @@ module.exports.handle = async event => {
     }
 
     const dynamoDb = new DynamoDB.DocumentClient();
-    const uuid = event.pathParameters.id;
+    var uuid = event.pathParameters.id;
     var somme_note = 0;
     var compteur = 0;
     const result = await dynamoDb.query({
@@ -19,6 +19,7 @@ module.exports.handle = async event => {
             ':type': 'user',
         },
     }).promise();
+    uuid = uuid.replace("%20"," ");
     const res1 = result.Items;
     const N = res1.length;
     for(let i = 0; i < N ; i++){

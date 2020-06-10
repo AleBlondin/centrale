@@ -6,7 +6,9 @@ module.exports.handle = async event => {
     }
 
     const dynamoDb = new DynamoDB.DocumentClient();
-    const uuid = event.pathParameters.id;
+    var uuid = event.pathParameters.id;
+    uuid = uuid.replace("%20"," ");
+
     const result = await dynamoDb.query({
         TableName: process.env.tableName,
         KeyConditionExpression: '#type = :type',
