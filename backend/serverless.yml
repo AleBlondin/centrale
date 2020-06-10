@@ -44,6 +44,16 @@ functions:
             origin: http://localhost:3000
             allowCredentials: true
 
+  create_movie:
+    handler: functions/create_movie.handle
+    events:
+      - http:
+          method: post
+          path: movie_create
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
+
   list:
     handler: functions/list.handle
     events:
@@ -59,6 +69,24 @@ functions:
       - http:
           method: get
           path: movie/list
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
+  list_movie_grade:
+    handler: functions/list_movie_grade.handle
+    events:
+      - http:
+          method: get
+          path: list_movie_grade/{id}
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
+  list_movie_no_grade:
+    handler: functions/list_movie_no_grade.handle
+    events:
+      - http:
+          method: get
+          path: list_movie_no_grade/{id}
           cors:
             origin: http://localhost:3000
             allowCredentials: true
