@@ -1,3 +1,7 @@
+body{
+  background-color: #282c34;
+}
+
 .MovieList {
     background-color: #282c34;
   }
@@ -17,4 +21,5 @@
 .MovieListList {
     color:white;
     font-size:20px;
+    line-height: 2.5;
 }

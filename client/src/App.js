@@ -5,27 +5,25 @@ import MoviePage from "./components/MoviePage";
 import MovieList from "./components/MovieList";
 import UserPage from "./components/UserPage";
 import PokemonDisplayer from "./components/PokemonDisplayer";
+import "./App.css";
+import { useState}from "react";
 
 function App() {
+  const [selecteduser, setselectedUser] = useState('')
+
   return (
     <Router>
       <div>
         <nav>
           <ul>
-            <li>
-              <Link to="/">Home</Link>
+            <li className="Color">
+              <Link to="/" className="Color">Home</Link>
             </li>
-            <li>
-              <Link to="/film">Page film</Link>
+            <li className="Color">
+              <Link to="/liste_films" className="Color">Liste des films</Link>
             </li>
-            <li>
-              <Link to="/liste_films">Liste des films</Link>
-            </li>
-            <li>
-              <Link to="/user">USER</Link>
-            </li>
-            <li>
-              <Link to="/demo">Demo</Link>
+            <li className="Color">
+              <Link to="/demo" className="Color">Demo</Link>
             </li>
           </ul>
         </nav>
@@ -36,16 +34,16 @@ function App() {
             <MovieList />
           </Route>
           <Route path="/user">
-            <UserPage />
+            <UserPage  user={selecteduser}/>
           </Route>
           <Route path="/film">
-            <MoviePage />
+            <MoviePage/>
           </Route>
           <Route path="/demo">
             <PokemonDisplayer/>
           </Route>
           <Route path="/">
-            <HomePage />
+            <HomePage setselectedUser={setselectedUser}/>
           </Route>
           
         </Switch>
