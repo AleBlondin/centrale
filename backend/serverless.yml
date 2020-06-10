@@ -89,7 +89,15 @@ functions:
           cors:
             origin: http://localhost:3000
             allowCredentials: true
-
+  avg_grade_movie:
+    handler: functions/avg_grade_movie.handle
+    events:
+      - http:
+          method: get
+          path: movie_avg/{id}
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
 
 custom:
   stageVars: ${file(./stage.${self:provider.stage}.yml)}

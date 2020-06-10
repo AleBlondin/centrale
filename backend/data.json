@@ -3,8 +3,9 @@
         {
             "PutRequest": {
                 "Item": {
-                    "type": {"S":"movie"},
-                    "uuid": {"S":"Intouchable"}
+                    "type": {"S":"user"},
+                    "uuid": {"S":"lucas"},
+                    "score": { "M" : { "Avengers" : {"S": "3" }, "Intouchable" : {"S": "4" }}}    
                 }
             }
         },
