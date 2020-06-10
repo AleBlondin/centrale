@@ -126,6 +126,15 @@ functions:
           cors:
             origin: http://localhost:3000
             allowCredentials: true
+  recommandation_genre:
+    handler: functions/recommandation_genre.handle
+    events:
+      - http:
+          method: get
+          path: movie_genre_recommandation/{id}
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
 
 custom:
   stageVars: ${file(./stage.${self:provider.stage}.yml)}
