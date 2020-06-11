@@ -1,7 +1,7 @@
 const DynamoDB = require('aws-sdk/clients/dynamodb');
 
 module.exports.handle = async event => {
-    const data = JSON.parse(event.body);
+    var data = JSON.parse(event.body);
     if (!process.env.tableName) {
         throw new Error('env.tableName must be defined');
     }
@@ -27,14 +27,26 @@ module.exports.handle = async event => {
         }
      }
     
-    var rate = info_user.score;
+    var test = Object.keys(info_user);
+
+    if(test.includes("score")){
+        var rate = info_user.score;
 
     var movie = data.title;
     movie = decodeURI(movie);
 
     var movie_rate = data.score;
 
-    rate[movie] = movie_rate ; 
+    rate[movie] = movie_rate ;
+
+    }else{
+        var movie = data.title;
+        var movie = decodeURI(movie);
+    
+        var rate = {};
+        var score = data.score;
+        rate[movie] = score;
+    }
 
     const item = {
         type: 'user',

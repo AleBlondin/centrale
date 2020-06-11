@@ -1,0 +1,7 @@
+{
+    "cs-group-1-louis-marie-dynamodb": [
+        {  "type": {"S":"user"},
+            "uuid": {"S":"Pierre"}    
+        }
+    ]
+}
