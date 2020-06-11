@@ -16,7 +16,6 @@ const MovieList = (props) => {
         const responseJson = await response.json();
         setError(false);
         setItems(responseJson);
-        console.log(responseJson)
       } catch (error) {
         setError(error);
       }
@@ -35,7 +34,7 @@ const MovieList = (props) => {
         <ul>
           {items.map((item) => (
           <li>
-            <Link className="MovieListList" key={item.uuid} to={"/film/"+item.uuid}>{item.uuid}</Link>
+            <Link className="MovieListList" key={item.uuid} to={"/movie/"+item.uuid}>{item.uuid}</Link>
           </li>
           ))}
         </ul>

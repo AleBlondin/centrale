@@ -1,6 +1,7 @@
 import React from "react";
 import "./UserPage.css";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 
@@ -8,6 +9,7 @@ const UserPage = (props) => {
 
   const [error, setError] = useState(null);
   const [items, setItems] = useState([]);
+  const [rec, setRec] = useState([]);
   const user = props.user;
 
 
@@ -19,12 +21,22 @@ const UserPage = (props) => {
         const responseJson = await response.json();
         setError(false);
         setItems(responseJson);
-        console.log(responseJson)
       } catch (error) {
         setError(error);
       }
     };
     fetchMovieGrade();
+    const fetchMovieRec = async () => {
+      try {
+        const response = await fetch("https://t7hapfpdr9.execute-api.eu-west-1.amazonaws.com/dev/movie_genre_recommandation/"+user);
+        const responseJson = await response.json();
+        setError(false);
+        setRec(responseJson);
+      } catch (error) {
+        setError(error);
+      }
+    };
+    fetchMovieRec();
   }, [user]);
   
   const displayMoviesGrade = () => {
@@ -34,7 +46,27 @@ const UserPage = (props) => {
       return (
         <div>
           <ul>
-            {items.map((item) => (<li>{item}</li>))}
+            {items.map((item) => (
+            <li className="UserMovieList">
+              <Link className="UserMovieList" key={item} to = {"/movie/"+item}> {item}</Link> 
+            </li>))}
+          </ul>
+        </div>
+      );
+    }
+  };
+
+  const displayMoviesRec = () => {
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else {
+      return (
+        <div>
+          <ul>
+            {rec.map((item) => (
+            <li className="UserMovieList">
+              <Link className="UserMovieList" key={item} to = {"/movie/"+item}> {item}</Link> 
+            </li>))}
           </ul>
         </div>
       );
@@ -42,7 +74,16 @@ const UserPage = (props) => {
   };
 
 
-    
+  if (user === '') {return (
+  <div className="UserPage">
+    <header className="UserPage-header">
+      <p className="UserWelcome">
+      Veuillez entrer un pseudo dans la page d'accueil.
+      </p> 
+    </header>
+  </div>)
+  }
+  else{
   return (
     <div className="UserPage">
       <header className="UserPage-header">
@@ -55,10 +96,11 @@ const UserPage = (props) => {
         </div>
         <div className="UserColonneDroite">
             Films à voir :
+            {displayMoviesRec()}
         </div>
       </header>
     </div>
-  );
+  );}
 };
   
   export default UserPage

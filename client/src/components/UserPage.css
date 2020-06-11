@@ -28,6 +28,7 @@ body{
 
   color: red;
   float:left;
+  font-size:25px;
   width: 50%;
 
 
@@ -37,8 +38,15 @@ body{
 
   color: red;
   float:right;
+  font-size:25px;
   width: 50%;
 
 
 
+}
+
+.UserMovieList {
+  color:white;
+  font-size:20px;
+  line-height: 2.5;
 }
