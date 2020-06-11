@@ -10,42 +10,37 @@ module.exports.handle = async event => {
     var uuid = data.user;
     uuid = uuid.replace(/%20/g ," ");
 
-    const result = await dynamoDb.get({
+    const result = await dynamoDb.query({
         TableName: process.env.tableName,
-        Key: {
-            type: 'user',
-            uuid: uuid,
+        KeyConditionExpression: '#type = :type',
+        ExpressionAttributeNames: {
+            '#type': 'type'
+        },
+        ExpressionAttributeValues: {
+            ':type': 'user',
         },
     }).promise();
-
-    var info_user = result.Item;
-
-    if (!info_user) {
-        return {
-           statusCode: 404,
-           body: 'Not found'
+    const res1 = result.Items;
+    N = res1.length;
+    var n = 0;
+    for(let i=0; i <N ; i++){
+        if(res1[i]["uuid"] == uuid){
+            n = 1;
         }
-     }
+    }   
+
+    if(n == 0){
+        const item = {
+            type: 'user',
+            uuid: uuid,
+        }
     
-    var rate = info_user.score;
-
-    var movie = data.title;
-    movie = movie.replace(/%20/g ," ");
-
-    var movie_rate = data.score;
-
-    rate[movie] = movie_rate ; 
-
-    const item = {
-        type: 'user',
-        uuid: uuid,
-        score: rate,
+        await dynamoDb.put({
+            TableName: process.env.tableName,
+            Item: item,
+        }).promise();
     }
 
-    await dynamoDb.put({
-        TableName: process.env.tableName,
-        Item: item,
-    }).promise();
 
     return {
         statusCode: 200,

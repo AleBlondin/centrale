@@ -53,6 +53,15 @@ functions:
           cors:
             origin: http://localhost:3000
             allowCredentials: true
+  create_user:
+    handler: functions/create_user.handle
+    events:
+      - http:
+          method: post
+          path: user_create
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
   create_rate:
     handler: functions/create_rate.handle
     events:
