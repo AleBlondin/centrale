@@ -19,7 +19,7 @@ module.exports.handle = async event => {
             ':type': 'user',
         },
     }).promise();
-    uuid = uuid.replace("%20"," ");
+    uuid = uuid.replace(/%20/g ," ");
     const res1 = result.Items;
     const N = res1.length;
     for(let i = 0; i < N ; i++){

@@ -7,7 +7,7 @@ module.exports.handle = async event => {
 
     const dynamoDb = new DynamoDB.DocumentClient();
     var uuid = event.pathParameters.id;
-    uuid = uuid.replace("%20"," ");
+    uuid = uuid.replace(/%20/g ," ");
     const result = await dynamoDb.query({
         TableName: process.env.tableName,
         KeyConditionExpression: '#type = :type',
@@ -71,6 +71,32 @@ module.exports.handle = async event => {
         }
     }
 
+    var nb_genre_vu = dict_genre.length ;
+    keys_genre = Object.keys(dict_genre);
+    var max = dict_genre[0] ;
+    var id_genre_favori = 0 ;
+    var genre_favori = keys_genre[0];
+    for (let i=1; i < nb_genre_vu ; i++){
+        if(keys_genre[i] > max){
+            max = dict_genre[i];
+            id_genre_favori = i;
+            genre_favori = keys_genre[i];
+        }
+    }
+
+    var film_reco = [];
+
+    for(let i=0; i < nb_movie ; i++){
+        if(keys.includes(all_movie[i]["uuid"]) == false){
+            if(all_movie[i]["genre"] == genre_favori){
+                film_reco.push(all_movie[i]["uuid"]);
+            }
+        }
+    }
+
+
+
+
     
     return {
         statusCode: 200,
@@ -78,7 +104,7 @@ module.exports.handle = async event => {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Credentials': true,
         },
-        body: JSON.stringify(dict_genre),
+        body: JSON.stringify(film_reco),
     }
 
 }
