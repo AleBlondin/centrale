@@ -2,13 +2,14 @@ const DynamoDB = require('aws-sdk/clients/dynamodb');
 
 module.exports.handle = async event => {
     const data = JSON.parse(event.body);
-
+    console.log(data);
     if (!process.env.tableName) {
         throw new Error('env.tableName must be defined');
     }
     const dynamoDb = new DynamoDB.DocumentClient();
 
-    var uuid = data.content;
+    var uuid = data.user;
+    uuid = uuid.replace(/%20/g ," ");
 
     const result = await dynamoDb.get({
         TableName: process.env.tableName,
@@ -22,16 +23,17 @@ module.exports.handle = async event => {
     
     var rate = info_user["score"];
 
-    var movie = data.content;
+    var movie = data.title;
+    movie = movie.replace(/%20/g ," ");
 
-    var movie_rate = data.content;
+    var movie_rate = data.score;
 
     rate[movie] = movie_rate ; 
 
     const item = {
         type: 'user',
         uuid: uuid,
-        score : rate
+        score : rate,
     }
 
     await dynamoDb.put({
