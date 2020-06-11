@@ -31,13 +31,14 @@ module.exports.handle = async event => {
     
     if (compteur !== 0){
         const avg = somme_note/compteur;
+        const texte = avg.toString()+"/5"
         return {
             statusCode: 200,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Credentials': true,
             },
-            body: JSON.stringify(avg),
+            body: JSON.stringify(texte),
         }
     }
     else{
