@@ -44,6 +44,25 @@ functions:
             origin: http://localhost:3000
             allowCredentials: true
 
+  create_movie:
+    handler: functions/create_movie.handle
+    events:
+      - http:
+          method: post
+          path: movie_create
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
+  create_rate:
+    handler: functions/create_rate.handle
+    events:
+      - http:
+          method: post
+          path: movie_rate
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
+
   list:
     handler: functions/list.handle
     events:
@@ -59,6 +78,24 @@ functions:
       - http:
           method: get
           path: movie/list
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
+  list_movie_grade:
+    handler: functions/list_movie_grade.handle
+    events:
+      - http:
+          method: get
+          path: list_movie_grade/{id}
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
+  list_movie_no_grade:
+    handler: functions/list_movie_no_grade.handle
+    events:
+      - http:
+          method: get
+          path: list_movie_no_grade/{id}
           cors:
             origin: http://localhost:3000
             allowCredentials: true
@@ -89,7 +126,24 @@ functions:
           cors:
             origin: http://localhost:3000
             allowCredentials: true
-
+  avg_grade_movie:
+    handler: functions/avg_grade_movie.handle
+    events:
+      - http:
+          method: get
+          path: movie_avg/{id}
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
+  recommandation_genre:
+    handler: functions/recommandation_genre.handle
+    events:
+      - http:
+          method: get
+          path: movie_genre_recommandation/{id}
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
 
 custom:
   stageVars: ${file(./stage.${self:provider.stage}.yml)}
