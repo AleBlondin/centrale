@@ -33,6 +33,7 @@ module.exports.handle = async event => {
     
     if(test.includes("score")){
         var keys = Object.keys(info_user["score"]);
+        keys.sort();
     }else{
         var keys = [];        
     }
