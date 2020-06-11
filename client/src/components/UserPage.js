@@ -28,7 +28,7 @@ const UserPage = (props) => {
     fetchMovieGrade();
     const fetchMovieRec = async () => {
       try {
-        const response = await fetch("https://t7hapfpdr9.execute-api.eu-west-1.amazonaws.com/dev/movie_genre_recommandation/"+user);
+        const response = await fetch("https://t7hapfpdr9.execute-api.eu-west-1.amazonaws.com/dev/list_movie_no_grade/"+user);
         const responseJson = await response.json();
         setError(false);
         setRec(responseJson);
@@ -95,7 +95,7 @@ const UserPage = (props) => {
           {displayMoviesGrade()}
         </div>
         <div className="UserColonneDroite">
-            Films à voir :
+            Films non vus :
             {displayMoviesRec()}
         </div>
       </header>

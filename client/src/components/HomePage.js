@@ -7,11 +7,16 @@ const HomePage = (props) => {
   const history = useHistory()
   const input = React.createRef();  
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     props.setselectedUser(input.current.value);
-    history.replace("/user");
+    history.push("/user");
     event.preventDefault();
-    
+    await fetch("https://t7hapfpdr9.execute-api.eu-west-1.amazonaws.com/dev/user_create",{
+        method:'post',
+        body: JSON.stringify({
+          "user":input.current.value
+        })
+        });
   };
 
 

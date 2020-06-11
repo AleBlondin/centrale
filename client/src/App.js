@@ -4,6 +4,7 @@ import HomePage from "./components/HomePage";
 import MoviePage from "./components/MoviePage";
 import MovieList from "./components/MovieList";
 import UserPage from "./components/UserPage";
+import CreateMovie from "./components/CreateMovie";
 import "./App.css";
 import { useState}from "react";
 
@@ -22,6 +23,9 @@ function App() {
               <Link to="/movies" className="Color">Liste des films</Link>
             </li>
             <li className="Color">
+              <Link to="/add_movie" className="Color">Ajouter un film</Link>
+            </li>
+            <li className="Color">
               <Link to="/user" className="Color">Profil</Link>
             </li>
           </ul>
@@ -37,6 +41,9 @@ function App() {
           </Route>
           <Route path="/movie">
             <MoviePage user={selecteduser}/>
+          </Route>
+          <Route path="/add_movie">
+            <CreateMovie/>
           </Route>
           <Route path="/">
             <HomePage setselectedUser={setselectedUser}/>

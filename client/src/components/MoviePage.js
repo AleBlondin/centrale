@@ -20,7 +20,8 @@ const MoviePage = (props) => {
   const [category, setCategory] = useState('');
   const [affiche, setAffiche] = useState('');
   const title = window.location.pathname.split("/").pop()
-  const[changescore, setChangeScore] = useState('')
+  const [triggerfetch, setTriggerfetch] = useState(false)
+  
 
 
   useEffect(() => {
@@ -59,13 +60,14 @@ const MoviePage = (props) => {
       const response = await fetch("https://t7hapfpdr9.execute-api.eu-west-1.amazonaws.com/dev/user/"+user);
       const responseJson = await response.json();
       setError(false);
-      const keys = Object.keys(responseJson["score"]);
-      const T = decodeURI(title)
-      if(keys.includes(T)){
-          setScoreUser(responseJson['score'][T]+'/5');
-        }
+      const K = Object.keys(responseJson);
+      if (K.includes('score')) {
+        const keys = Object.keys(responseJson["score"]);
+        const T = decodeURI(title)
+        if(keys.includes(T)){
+            setScoreUser(responseJson['score'][T]+'/5');
+          }}
       else {setScoreUser('Aucune note donnée');}
-      console.log(scoreUser)
     } catch (error) {
       setError(error);
     }
@@ -74,11 +76,11 @@ const MoviePage = (props) => {
   fetchScore();
   fetchAffiche();
   fetchUserScore();
-  }, [title, user, scoreUser]);
+  }, [title, user, triggerfetch]);
 
-  const input = React.createRef()
+  const input = React.createRef();
+
     const updateScore = async (event) => {
-      setChangeScore(input)
       if (user!=='') {
         event.preventDefault();
         await fetch("https://t7hapfpdr9.execute-api.eu-west-1.amazonaws.com/dev/movie_rate",{
@@ -86,10 +88,12 @@ const MoviePage = (props) => {
         body: JSON.stringify({
           "title" : title,
           "user" : user,
-          "score" : changescore 
+          "score" : input.current.value 
         })
         });
-      }
+        setTriggerfetch(!triggerfetch)
+        }
+      
     }
 
 
