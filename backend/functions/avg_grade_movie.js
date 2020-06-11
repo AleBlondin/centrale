@@ -34,7 +34,8 @@ module.exports.handle = async event => {
     }
     
     if (compteur !== 0){
-        const avg = somme_note/compteur;
+        var avg = somme_note/compteur;
+        avg = avg.toFixed(2);
         const texte = avg.toString()+"/5"
         return {
             statusCode: 200,

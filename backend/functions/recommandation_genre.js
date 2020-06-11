@@ -26,78 +26,81 @@ module.exports.handle = async event => {
             n = i;
         }
     }    
-    const info_user = res1[n];
-    const keys = Object.keys(info_user["score"]); // liste film noté
+    var info_user = res1[n];
 
-    const result_movie = await dynamoDb.query({
-        TableName: process.env.tableName,
-        KeyConditionExpression: '#type = :type',
-        ExpressionAttributeNames: {
-            '#type': 'type'
-        },
-        ExpressionAttributeValues: {
-            ':type': 'movie',
-        },
-    }).promise();
+    var test = Object.keys(info_user);
 
-    const all_movie = result_movie.Items;
+    if(test.includes("score") == true ){
 
-    const nb_movie = all_movie.length;
+        const keys = Object.keys(info_user["score"]); // liste film noté
 
-    var liste = []; // liste film non noté
+        const result_movie = await dynamoDb.query({
+            TableName: process.env.tableName,
+            KeyConditionExpression: '#type = :type',
+            ExpressionAttributeNames: {
+                '#type': 'type'
+            },
+            ExpressionAttributeValues: {
+                ':type': 'movie',
+            },
+        }).promise();
 
-    var liste_genre = []; //liste genre déja vu
+        const all_movie = result_movie.Items;
 
-    for(let i=0; i < nb_movie ; i++){
-        if(keys.includes(all_movie[i]["uuid"]) == false){
-            liste.push(all_movie[i]['uuid']);
-        }else{
-            liste_genre.push(all_movie[i]["genre"]);
-        }
-    }
+        const nb_movie = all_movie.length;
 
-    var nb_film_vu = liste_genre.length ;
+        var liste = []; // liste film non noté
 
-    var dict_genre = {} ;
-    
-    var keys_genre = Object.keys(dict_genre);
+        var liste_genre = []; //liste genre déja vu
 
-    for(let i=0; i < nb_film_vu ; i++){
-        keys_genre = Object.keys(dict_genre)
-        if(keys_genre.includes(liste_genre[i]) == false){
-            dict_genre[liste_genre[i]] = 1 ;
-        }else{
-            dict_genre[liste_genre[i]] = dict_genre[liste_genre[i]] + 1 ;
-        }
-    }
-
-    var nb_genre_vu = dict_genre.length ;
-    keys_genre = Object.keys(dict_genre);
-    var max = dict_genre[0] ;
-    var id_genre_favori = 0 ;
-    var genre_favori = keys_genre[0];
-    for (let i=1; i < nb_genre_vu ; i++){
-        if(keys_genre[i] > max){
-            max = dict_genre[i];
-            id_genre_favori = i;
-            genre_favori = keys_genre[i];
-        }
-    }
-
-    var film_reco = [];
-
-    for(let i=0; i < nb_movie ; i++){
-        if(keys.includes(all_movie[i]["uuid"]) == false){
-            if(all_movie[i]["genre"] == genre_favori){
-                film_reco.push(all_movie[i]["uuid"]);
+        for(let i=0; i < nb_movie ; i++){
+            if(keys.includes(all_movie[i]["uuid"]) == false){
+                liste.push(all_movie[i]['uuid']);
+            }else{
+                liste_genre.push(all_movie[i]["genre"]);
             }
         }
+
+        var nb_film_vu = liste_genre.length ;
+
+        var dict_genre = {} ;
+        
+        var keys_genre = Object.keys(dict_genre);
+
+        for(let i=0; i < nb_film_vu ; i++){
+            keys_genre = Object.keys(dict_genre)
+            if(keys_genre.includes(liste_genre[i]) == false){
+                dict_genre[liste_genre[i]] = 1 ;
+            }else{
+                dict_genre[liste_genre[i]] = dict_genre[liste_genre[i]] + 1 ;
+            }
+        }
+
+        var nb_genre_vu = dict_genre.length ;
+        keys_genre = Object.keys(dict_genre);
+        var max = dict_genre[0] ;
+        var id_genre_favori = 0 ;
+        var genre_favori = keys_genre[0];
+        for (let i=1; i < nb_genre_vu ; i++){
+            if(keys_genre[i] > max){
+                max = dict_genre[i];
+                id_genre_favori = i;
+                genre_favori = keys_genre[i];
+            }
+        }
+
+        var film_reco = [];
+
+        for(let i=0; i < nb_movie ; i++){
+            if(keys.includes(all_movie[i]["uuid"]) == false){
+                if(all_movie[i]["genre"] == genre_favori){
+                    film_reco.push(all_movie[i]["uuid"]);
+                }
+            }
+        }
+    }else{
+        var film_reco = [];
     }
-
-
-
-
-    
     return {
         statusCode: 200,
         headers: {
