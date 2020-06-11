@@ -8,7 +8,7 @@ module.exports.handle = async event => {
     const dynamoDb = new DynamoDB.DocumentClient();
 
     var uuid = data.movie;
-    uuid = uuid.replace(/%20/g ," ");
+    uuid = decodeURI(uuid);
 
     var affiche =  data.affiche;
     var genre = data.genre;

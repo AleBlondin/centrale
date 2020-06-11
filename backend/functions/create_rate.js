@@ -8,7 +8,7 @@ module.exports.handle = async event => {
     const dynamoDb = new DynamoDB.DocumentClient();
 
     var uuid = data.user;
-    uuid = uuid.replace(/%20/g ," ");
+    uuid = decodeURI(uuid);
 
     const result = await dynamoDb.get({
         TableName: process.env.tableName,
@@ -30,7 +30,7 @@ module.exports.handle = async event => {
     var rate = info_user.score;
 
     var movie = data.title;
-    movie = movie.replace(/%20/g ," ");
+    movie = decodeURI(movie);
 
     var movie_rate = data.score;
 

@@ -7,7 +7,7 @@ module.exports.handle = async event => {
 
     const dynamoDb = new DynamoDB.DocumentClient();
     var uuid = event.pathParameters.id;
-    uuid = uuid.replace(/%20/g ," ");
+    uuid = decodeURI(uuid);
 
     const result = await dynamoDb.query({
         TableName: process.env.tableName,
@@ -28,31 +28,58 @@ module.exports.handle = async event => {
         }
     }    
     const info_user = res1[n];
-    const keys = Object.keys(info_user["score"]);
 
-    const result_movie = await dynamoDb.query({
-        TableName: process.env.tableName,
-        KeyConditionExpression: '#type = :type',
-        ExpressionAttributeNames: {
-            '#type': 'type'
-        },
-        ExpressionAttributeValues: {
-            ':type': 'movie',
-        },
-    }).promise();
-
-    const result_movie1 = result_movie.Items;
-
-    const nb_movie = result_movie1.length;
-
+    var test = Object.keys(info_user);
+        
     var liste = [];
-    
-    for(let i=0; i < nb_movie ; i++){
-        if(keys.includes(result_movie1[i]["uuid"]) == false){
+
+
+    if(test.includes("score")){
+        var keys = Object.keys(info_user["score"]);
+
+        const result_movie = await dynamoDb.query({
+            TableName: process.env.tableName,
+            KeyConditionExpression: '#type = :type',
+            ExpressionAttributeNames: {
+                '#type': 'type'
+            },
+            ExpressionAttributeValues: {
+                ':type': 'movie',
+            },
+        }).promise();
+
+        const result_movie1 = result_movie.Items;
+
+        const nb_movie = result_movie1.length;
+        
+        for(let i=0; i < nb_movie ; i++){
+            if(keys.includes(result_movie1[i]["uuid"]) == false){
+                liste.push(result_movie1[i]['uuid']);
+            }
+        }
+    }else{
+        const result_movie = await dynamoDb.query({
+            TableName: process.env.tableName,
+            KeyConditionExpression: '#type = :type',
+            ExpressionAttributeNames: {
+                '#type': 'type'
+            },
+            ExpressionAttributeValues: {
+                ':type': 'movie',
+            },
+        }).promise();
+
+        const result_movie1 = result_movie.Items;
+
+        const nb_movie = result_movie1.length;
+        
+        for(let i=0; i < nb_movie ; i++){
             liste.push(result_movie1[i]['uuid']);
         }
+
     }
-    
+
+
     return {
         statusCode: 200,
         headers: {

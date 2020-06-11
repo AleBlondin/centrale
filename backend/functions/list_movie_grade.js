@@ -7,7 +7,7 @@ module.exports.handle = async event => {
 
     const dynamoDb = new DynamoDB.DocumentClient();
     var uuid = event.pathParameters.id;
-    uuid = uuid.replace(/%20/g ," ");
+    uuid = decodeURI(uuid);
 
     const result = await dynamoDb.query({
         TableName: process.env.tableName,
@@ -28,8 +28,15 @@ module.exports.handle = async event => {
         }
     }    
     const info_user = res1[n];
-    const keys = Object.keys(info_user["score"]);
+
+    var test = Object.keys(info_user);
     
+    if(test.includes("score")){
+        var keys = Object.keys(info_user["score"]);
+    }else{
+        var keys = [];        
+    }
+
     return {
         statusCode: 200,
         headers: {

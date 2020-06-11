@@ -8,7 +8,7 @@ module.exports.handle = async event => {
     const dynamoDb = new DynamoDB.DocumentClient();
 
     var uuid = data.user;
-    uuid = uuid.replace(/%20/g ," ");
+    uuid = decodeURI(uuid);
 
     const result = await dynamoDb.query({
         TableName: process.env.tableName,
