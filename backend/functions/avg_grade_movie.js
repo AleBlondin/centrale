@@ -19,14 +19,18 @@ module.exports.handle = async event => {
             ':type': 'user',
         },
     }).promise();
-    uuid = uuid.replace(/%20/g ," ");
+    uuid = decodeURI(uuid);
     const res1 = result.Items;
     const N = res1.length;
     for(let i = 0; i < N ; i++){
-        if(res1[i]["score"][uuid] !== undefined){
-            compteur = compteur + 1 ;
-            somme_note = somme_note + parseFloat(res1[i]["score"][uuid]);
-        }
+        var test = Object.keys(res1[i]);
+        if(test.includes("score")){     
+            var test2 = Object.keys(res1[i]["score"]) 
+            if(test2.includes(uuid)){
+                compteur = compteur + 1 ;
+                somme_note = somme_note + parseFloat(res1[i]["score"][uuid]);
+            }
+        }    
     }
     
     if (compteur !== 0){
