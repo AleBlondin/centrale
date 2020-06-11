@@ -53,6 +53,15 @@ functions:
           cors:
             origin: http://localhost:3000
             allowCredentials: true
+  create_rate:
+    handler: functions/create_rate.handle
+    events:
+      - http:
+          method: post
+          path: movie_rate
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
 
   list:
     handler: functions/list.handle

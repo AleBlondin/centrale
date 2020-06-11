@@ -104,7 +104,7 @@ module.exports.handle = async event => {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Credentials': true,
         },
-        body: JSON.stringify(film_reco),
+        body: JSON.stringify(res1),
     }
 
 }
