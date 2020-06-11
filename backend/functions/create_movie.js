@@ -12,7 +12,8 @@ module.exports.handle = async event => {
 
     var affiche =  data.affiche;
     var genre = data.genre;
-
+    genre = decodeURI(genre);
+    
     const result = await dynamoDb.query({
         TableName: process.env.tableName,
         KeyConditionExpression: '#type = :type',
