@@ -29,8 +29,7 @@ module.exports.handle = async event => {
         }
     }
 
-    liste.sort()
-    liste.unshift("Aucune")
+    liste.sort();
 
     return {
         statusCode: 200,
