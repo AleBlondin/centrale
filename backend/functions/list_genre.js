@@ -29,6 +29,8 @@ module.exports.handle = async event => {
         }
     }
 
+    liste.sort()
+    liste.unshift("Aucune")
 
     return {
         statusCode: 200,
@@ -36,6 +38,6 @@ module.exports.handle = async event => {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Credentials': true,
           },
-        body: JSON.stringify(liste.sort()),
+        body: JSON.stringify(liste),
     }
 }
