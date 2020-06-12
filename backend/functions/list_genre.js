@@ -36,6 +36,6 @@ module.exports.handle = async event => {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Credentials': true,
           },
-        body: JSON.stringify(liste),
+        body: JSON.stringify(liste.sort()),
     }
 }
