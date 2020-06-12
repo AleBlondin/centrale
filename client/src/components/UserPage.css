@@ -17,10 +17,17 @@ body{
 
   }
 
-.UserWelcome{
+  .UserWelcome{
     text-align:center;
     color: red;
     font-size:30px;
+
+}
+
+.UserRec{
+  text-align:center;
+  color: red;
+  font-size:25px;
 
 }
 

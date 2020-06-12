@@ -9,7 +9,8 @@ const UserPage = (props) => {
 
   const [error, setError] = useState(null);
   const [items, setItems] = useState([]);
-  const [rec, setRec] = useState([]);
+  const [notSeen, setnotSeen] = useState([]);
+  const [rec, setRec] = useState([])
   const user = props.user;
 
 
@@ -26,9 +27,22 @@ const UserPage = (props) => {
       }
     };
     fetchMovieGrade();
-    const fetchMovieRec = async () => {
+
+    const fetchMovieNotSeen = async () => {
       try {
         const response = await fetch("https://t7hapfpdr9.execute-api.eu-west-1.amazonaws.com/dev/list_movie_no_grade/"+user);
+        const responseJson = await response.json();
+        setError(false);
+        setnotSeen(responseJson);
+      } catch (error) {
+        setError(error);
+      }
+    };
+    fetchMovieNotSeen();
+
+    const fetchMovieRec = async () => {
+      try {
+        const response = await fetch(" https://t7hapfpdr9.execute-api.eu-west-1.amazonaws.com/dev/movie_genre_recommandation/"+user);
         const responseJson = await response.json();
         setError(false);
         setRec(responseJson);
@@ -56,6 +70,23 @@ const UserPage = (props) => {
     }
   };
 
+  const displayMoviesNotSeen = () => {
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else {
+      return (
+        <div>
+          <ul>
+            {notSeen.map((item) => (
+            <li className="UserMovieList">
+              <Link className="UserMovieList" key={item} to = {"/movie/"+item}> {item}</Link> 
+            </li>))}
+          </ul>
+        </div>
+      );
+    }
+  };
+
   const displayMoviesRec = () => {
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -64,9 +95,8 @@ const UserPage = (props) => {
         <div>
           <ul>
             {rec.map((item) => (
-            <li className="UserMovieList">
               <Link className="UserMovieList" key={item} to = {"/movie/"+item}> {item}</Link> 
-            </li>))}
+            ))}
           </ul>
         </div>
       );
@@ -90,13 +120,17 @@ const UserPage = (props) => {
         <p className="UserWelcome">
           Bienvenue, {user}.
         </p>
+        <p className = "UserRec">
+          Films recommandés :
+          {displayMoviesRec()}
+        </p>
         <div className="UserColonneGauche">
           Liste des films déja vus : 
           {displayMoviesGrade()}
         </div>
         <div className="UserColonneDroite">
             Films non vus :
-            {displayMoviesRec()}
+            {displayMoviesNotSeen()}
         </div>
       </header>
     </div>
