@@ -81,6 +81,15 @@ functions:
           cors:
             origin: http://localhost:3000
             allowCredentials: true
+  list_genre:
+    handler: functions/list_genre.handle
+    events:
+      - http:
+          method: get
+          path: genre/list
+          cors:
+            origin: http://localhost:3000
+            allowCredentials: true
   list_movie:
     handler: functions/list_movie.handle
     events:
