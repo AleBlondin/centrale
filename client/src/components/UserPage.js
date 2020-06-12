@@ -95,8 +95,9 @@ const UserPage = (props) => {
         <div>
           <ul>
             {rec.map((item) => (
+              <li className="UserMovieList">
               <Link className="UserMovieList" key={item} to = {"/movie/"+item}> {item}</Link> 
-            ))}
+              </li>))}
           </ul>
         </div>
       );

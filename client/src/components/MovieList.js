@@ -101,6 +101,7 @@ const displayMoviescat = () => {
 
   const displayMoviesChoice = (event) => {
     if (type ==='') {return(displayMovies())}
+    if (type ==='Aucune') {return(displayMovies())}
     else {return(displayMoviescat())}
   };
 
