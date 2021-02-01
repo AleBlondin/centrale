@@ -1,24 +1,20 @@
-const uuid = require('uuid');
 const DynamoDB = require('aws-sdk/clients/dynamodb');
 
 module.exports.handle = async event => {
-    const data = JSON.parse(event.body);
-
     if (!process.env.tableName) {
         throw new Error('env.tableName must be defined');
     }
+
     const dynamoDb = new DynamoDB.DocumentClient();
-
-    const item = {
-        type: 'items',
-        uuid: uuid.v1(),
-        content: data.content,
-        createdAt: Date.now(),
-    }
-
-    await dynamoDb.put({
+    const result = await dynamoDb.query({
         TableName: process.env.tableName,
-        Item: item,
+        KeyConditionExpression: '#type = :type',
+        ExpressionAttributeNames: {
+            '#type': 'type'
+        },
+        ExpressionAttributeValues: {
+            ':type': 'movie',
+        },
     }).promise();
 
     return {
@@ -27,7 +23,6 @@ module.exports.handle = async event => {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Credentials': true,
           },
-        body: JSON.stringify(item),
+        body: JSON.stringify(result.Items),
     }
 }
-
