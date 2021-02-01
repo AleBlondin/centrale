@@ -6,11 +6,14 @@ module.exports.handle = async event => {
     }
 
     const dynamoDb = new DynamoDB.DocumentClient();
+    var uuid = event.pathParameters.id;
+    uuid = uuid.replace(/%20/g ," ");
+
     const result = await dynamoDb.get({
         TableName: process.env.tableName,
         Key: {
-            type: 'items',
-            uuid: event.pathParameters.id,
+            type: 'movie',
+            uuid: uuid,
         },
     }).promise();
 
@@ -30,4 +33,3 @@ module.exports.handle = async event => {
         }
     }
 }
-

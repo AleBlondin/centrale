@@ -1,0 +1,59 @@
+body{
+  background-color: #282c34;
+}
+
+
+
+
+.UserPage {
+    background-color: #282c34;
+  }
+  
+.UserPagePage-header {
+    display: flex;
+    flex-direction: column;
+    font-family: verdana;
+
+
+  }
+
+  .UserWelcome{
+    text-align:center;
+    color: red;
+    font-size:30px;
+
+}
+
+.UserRec{
+  text-align:center;
+  color: red;
+  font-size:25px;
+
+}
+
+.UserColonneGauche{
+
+  color: red;
+  float:left;
+  font-size:25px;
+  width: 50%;
+
+
+}
+
+.UserColonneDroite{
+
+  color: red;
+  float:right;
+  font-size:25px;
+  width: 50%;
+
+
+
+}
+
+.UserMovieList {
+  color:white;
+  font-size:20px;
+  line-height: 2.5;
+}
