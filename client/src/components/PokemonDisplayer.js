@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; une modif
 
 const PokemonDisplayer = () => {
   const [error, setError] = useState(null);
